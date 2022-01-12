@@ -1,5 +1,5 @@
 namespace StoreModels;
-using System;
+using System.Data;
 
 public class Order
 {
@@ -11,6 +11,15 @@ public class Order
     public int InventoryId {get; set;}
     public List<LineItem> LineItems {get; set;}
     public decimal Total {get; set;}
+
+public void ToDataRow(ref DataRow row)
+{
+    row["Id"] = this.OrderNumber;
+    row["CustomerId"] = this.CustomerId;
+    row["StoreId"] = this.StoreId;
+    row["Total"] = this.Total;
+    row["OrderDate"] = this.OrderDate;
+}
 
     // public decimal CalculateTotal() 
     // {

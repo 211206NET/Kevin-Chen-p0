@@ -25,6 +25,13 @@ public class Customer
         // this.City = row["City"].ToString() ?? "";
     }
 
+    public void ToDataRow(ref DataRow row)
+    {
+        row["UserName"] = this.UserName;
+        row["Password"] = this.Password;
+        // row["City"] = this.City;
+    }
+
     public int Id {get; set;}
 
     public string UserName {get; set;}
@@ -45,11 +52,5 @@ public class Customer
             return $"Username: {this.UserName} Password: {this.Password}";
     }
 
-        public void ToDataRow(ref DataRow row)
-    {
-        row["UserName"] = this.UserName;
-        row["Password"] = this.Password;
-        // row["City"] = this.City;
-    }
     
 }

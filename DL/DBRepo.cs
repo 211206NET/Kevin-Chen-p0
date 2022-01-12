@@ -68,6 +68,40 @@ public class DBRepo : IRepo
     }
 
 
+
+    // public void AddCandy(Product productToAdd)
+    // {
+    //     DataSet custSet = new DataSet();
+    //     string selectCmd = "SELECT * FROM Product WHERE Id = -1";
+    //     using(SqlConnection connection = new SqlConnection(_connectionString))
+    //     {
+    //         using(SqlDataAdapter dataAdapter = new SqlDataAdapter(selectCmd, connection))
+    //         {
+    //             dataAdapter.Fill(custSet, "Product");
+
+    //             DataTable custTable = custSet.Tables["Product"];
+
+    //             DataRow newRow = custTable.NewRow();
+
+    //             productToAdd.ToDataRow(ref newRow);
+
+    //             custTable.Rows.Add(newRow);
+
+    //             string insertCmd = $"INSERT INTO Customer (UserName, Password) VALUES ('{customerToAdd.UserName}', '{customerToAdd.Password}')"; 
+
+    //             SqlCommandBuilder cmdBuilder = new SqlCommandBuilder(dataAdapter);
+
+    //             dataAdapter.InsertCommand = cmdBuilder.GetInsertCommand();
+
+    //             dataAdapter.Update(custTable);
+    //         }
+    //     }      
+    // }
+
+
+
+
+
     public int IsDuplicate(Customer customerToFind)
     {
         string searchQuery = $"SELECT * FROM Customer WHERE UserName='{customerToFind.UserName}' AND Password='{customerToFind.Password}'";
@@ -137,11 +171,14 @@ public class DBRepo : IRepo
         using(SqlConnection connection = new SqlConnection(_connectionString))
         {
             connection.Open();
-            string sqlCmd = "INSERT INTO (CustomerId, StoreId, OrderDate, LineItem, Total) OUTPUT INSERTED.ID VALUES (@customerId, @StoreId, @OrderDate, @LineItem, @Total)";
+            string sqlCmd = "INSERT INTO (CustomerId, StoreId, OrderDate, LineItem, Total) OUTPUT INSERTED.ID VALUES (@CustomerId, @StoreId, @OrderDate, @LineItem, @Total)";
 
             using(SqlCommand cmd = new SqlCommand(sqlCmd, connection))
             {
-                SqlParameter param = new SqlParameter("@customerId", OrderToAdd.CustomerId);
+                SqlParameter param = new SqlParameter("@CustomerId", OrderToAdd.CustomerId);
+                cmd.Parameters.Add(param);
+
+                param = new SqlParameter("@LineItem", OrderToAdd.LineItems);
                 cmd.Parameters.Add(param);
 
                 param = new SqlParameter("@StoreId", OrderToAdd.StoreId);

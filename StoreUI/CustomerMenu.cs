@@ -24,7 +24,7 @@ public class CustomerMenu : IMenu
             Console.WriteLine("This is the customer's menu");
             Console.WriteLine("what would you like to do");
             Console.WriteLine("Enter [1] to sign in");
-            Console.WriteLine("Enter [2] to signing up");
+            Console.WriteLine("Enter [2] to sign up");
             
             string input = Console.ReadLine();
             Customer customer = new Customer();

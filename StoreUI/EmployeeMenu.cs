@@ -79,7 +79,7 @@ public class EmployeeMenu : IMenu
                 
                 default:
                     //code
-                    Console.WriteLine("Wrong input exiting out now!!!");
+                    Console.WriteLine("Wrong input");
                     break;
 
 

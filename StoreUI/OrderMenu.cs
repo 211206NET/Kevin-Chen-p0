@@ -36,7 +36,7 @@ public class OrderMenu : IMenu
         
         while(!exit1)
         {
-            Console.WriteLine("Welcometo the order menu of the CANDY store\n");
+            Console.WriteLine("Welcome to the order menu of the CANDY store\n");
             //Console.WriteLine("What would you like to do?\nview product and place an order [1]\nview your cart [2]\ncheckout and exit [3]");
             Console.WriteLine("What would you like to do?\nview product and place an order [1]");
             Console.WriteLine("Just to view the product [2]");
@@ -98,7 +98,7 @@ public class OrderMenu : IMenu
                     else
                     {}
                     
-                    Console.WriteLine($"Your total {CurCustomer.cur_order.Total}");
+                    //Console.WriteLine($"Your total {CurCustomer.cur_order.Total}");
 
                     Console.WriteLine("You wish to continue shopping?");
                     Console.WriteLine("[1] to place order\n[2] to continue shopping");
@@ -111,7 +111,7 @@ public class OrderMenu : IMenu
                         foreach( LineItem items in CurCustomer.cur_lineItems)
                         {
                             _bl.AddLineItem(items, randOrderId);
-                            System.Console.WriteLine("Thank you for placing your order!");
+                            System.Console.WriteLine("Thank you for placing your order!\n");
                             Order clearOrder = new Order();
                             CurCustomer.cur_order = clearOrder;
                             exit2 = true;
