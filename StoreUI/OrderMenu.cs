@@ -38,7 +38,9 @@ public class OrderMenu : IMenu
         {
             Console.WriteLine("Welcometo the order menu of the CANDY store\n");
             //Console.WriteLine("What would you like to do?\nview product and place an order [1]\nview your cart [2]\ncheckout and exit [3]");
-            Console.WriteLine("What would you like to do?\nview product and place an order [1]\nexit back to main menu [2]");
+            Console.WriteLine("What would you like to do?\nview product and place an order [1]");
+            Console.WriteLine("Just to view the product [2]");
+            Console.WriteLine("exit back to main menu [3]");
             string? input = Console.ReadLine();
 
 
@@ -67,15 +69,15 @@ public class OrderMenu : IMenu
                     Console.WriteLine($"How much of the would you like to buy of {selectp.ProductName}");
                     
                     int input2 = int.Parse(Console.ReadLine());
-                    int product1 = selectp.ProductId;
+                    int productId = selectp.ProductId;
 
                     AddtoCart.ProductItem = selectp;
                     AddtoCart.Quantity = input2;
-                    AddtoCart.ProductId = product1;
+                    AddtoCart.ProductId = productId;
                     AddtoCart.OrderId = randOrderId;
                     
                     CurCustomer.cur_lineItems.Add(AddtoCart);
-                    
+
                     decimal total = CurCustomer.CalculateTotal();
 
                     if(CurCustomer.cur_order == null)
@@ -138,6 +140,15 @@ public class OrderMenu : IMenu
                 break;
                 
                 case"2":
+                Console.WriteLine("Just view the product");
+                List<Product> all2Product = _bl.GetAllProduct();
+                for(int i =0; i< all2Product.Count; i++)
+                {
+                    Console.WriteLine($"[{i}] {all2Product[i].ProductName}: \n {all2Product[i].Description}: \n Price: {all2Product[i].Price}");
+                }
+            
+                break;
+                case"3":
                 Console.WriteLine("Your returning to main menu");
                 exit1 = true;
                 //foreach(LineItem item in CurCustomer.cur_lineItems)
@@ -148,13 +159,8 @@ public class OrderMenu : IMenu
                 
                 break;
                 
-                // case"3":
-                // Console.WriteLine("You in review history not implemented yet");    
-                // break;
-                
                 default:
                     Console.WriteLine("Wrong input");
-                    //exit1 = true;
                 break;
             }//switch
         

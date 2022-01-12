@@ -15,6 +15,28 @@ public class DBRepo : IRepo
     }
     
     
+    public List<Customer> GetAllCustomers()
+    {
+
+        List<Customer> allCust = new List<Customer>();
+        using SqlConnection connection = new SqlConnection(_connectionString);
+        string cusToSelect = "SELECT * FROM Customer";
+        DataSet CSSet = new DataSet();
+        using SqlDataAdapter cusAdapter = new SqlDataAdapter(cusToSelect, connection);    
+        cusAdapter.Fill(CSSet, "Customer");
+        DataTable? cusTable = CSSet.Tables["Customer"];
+            
+        if(cusTable != null)
+        { 
+            foreach(DataRow row in cusTable.Rows)
+            {
+                Customer custo = new Customer(row);
+                allCust.Add(custo);
+            }
+        } 
+        return allCust;
+    }
+
     
     public void AddCustomer(Customer customerToAdd)
     {
@@ -63,6 +85,27 @@ public class DBRepo : IRepo
         }
         return -1;
     }
+
+    public int IsEmployee(Customer employeeToFind)
+    {
+        string searchQuery = $"SELECT * FROM Employee WHERE UserName='{employeeToFind.UserName}' AND Password='{employeeToFind.Password}'";
+
+        using SqlConnection connection = new SqlConnection(_connectionString);
+        using SqlCommand cmd = new SqlCommand(searchQuery, connection);
+
+        connection.Open();
+
+        using SqlDataReader reader = cmd.ExecuteReader();
+
+        if(reader.Read())
+        {
+            return reader.GetInt32(0);
+        }
+        return -1;
+    }
+
+
+
 
 
     public List<Product> GetAllProduct()
@@ -138,9 +181,5 @@ public class DBRepo : IRepo
 
 
 
-    public List<Customer> GetAllCustomers()
-    {
-        throw new NotImplementedException();
-    }
 
 }

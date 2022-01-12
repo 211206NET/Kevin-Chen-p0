@@ -1,6 +1,5 @@
 using BL;
 using StoreModels;
-using CustomExceptions;
 namespace StoreUI;
 
 
@@ -26,7 +25,6 @@ public class CustomerMenu : IMenu
             Console.WriteLine("what would you like to do");
             Console.WriteLine("Enter [1] to sign in");
             Console.WriteLine("Enter [2] to signing up");
-            Console.WriteLine("Enter [3x] to for employees");
             
             string input = Console.ReadLine();
             Customer customer = new Customer();
@@ -76,9 +74,9 @@ public class CustomerMenu : IMenu
                     //code
                     break;
 
-                case "3":
-                    //code
-                    break;
+                // case "3":
+                //     //code
+                //     break;
                 
                 default:
                     //code

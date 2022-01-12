@@ -11,6 +11,8 @@ public interface IBL
     void AddCustomer(Customer customerToAdd);
 
     int IsDuplicate(Customer customerToFind);
+    
+    int IsEmployee(Customer employeeToFind);
 
     void AddOrder(int CustomerId, Order OrderToAdd);
 

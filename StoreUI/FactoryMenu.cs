@@ -28,6 +28,9 @@ public static class FactoryMenu
             case "ordering":
                 return new OrderMenu(bl);
             
+            case "employee":
+                return new EmployeeMenu(bl);
+            
             default:
                 return new MainMenu(bl);
         }

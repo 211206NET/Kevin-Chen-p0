@@ -22,6 +22,7 @@ public class MainMenu : IMenu
             Console.WriteLine("What would you like to do?");
             Console.WriteLine("Press [1] to enter as a customers");
             Console.WriteLine("Press [2] to enter into the order menu");
+            Console.WriteLine("Press [3x] employee menu");
             Console.WriteLine("Press [3] to exit\n");
             
             string? login = Console.ReadLine();
@@ -42,7 +43,8 @@ public class MainMenu : IMenu
                     
                     case "3x":
 
-                        Console.WriteLine("Login into employee mode");
+                        Console.WriteLine("Login into employee menu");
+                        FactoryMenu.GetMenu("employee").Start();
 
                         break;
 

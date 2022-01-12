@@ -44,6 +44,11 @@ public class CBL : IBL
 
     }
 
+    public int IsEmployee(Customer employeeToFind)
+    {
+        return _dl.IsEmployee(employeeToFind);
+    }
+
     public void AddOrder(int CustomerId, Order OrderToAdd)
     {
         _dl.AddOrder(CustomerId, OrderToAdd);
